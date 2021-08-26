@@ -10,7 +10,6 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     name: Build & Publish
-    needs: analyze
     environment: production
     steps:
       - name: Checkout code
@@ -48,7 +47,7 @@ jobs:
   deploy:
     runs-on: ["self-hosted", "deploy", "production"]
     name: Deploy
-    needs: test
+    needs: build-and-publish
     environment: production
     steps:
       - name: Checkout code
